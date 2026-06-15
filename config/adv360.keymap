@@ -81,7 +81,7 @@
         compatible = "zmk,behavior-mod-morph";
         label = "JP_MINUS";
         #binding-cells = <0>;
-        bindings = <&kp MINUS>, <&kp LS(MINUS)>;
+       bindings = <&kp MINUS>, <&kp LS(UNDERSCORE)>;
         mods = <(MOD_LSFT|MOD_RSFT)>;
     };
       jp_semi: jp_semi {            // ;: 通常=; / Shift=:
