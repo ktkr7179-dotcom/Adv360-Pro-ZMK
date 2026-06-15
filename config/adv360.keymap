@@ -80,7 +80,7 @@
           compatible = "zmk,behavior-mod-morph";
           label = "JP_MINUS";
           #binding-cells = <0>;
-          bindings = <&kp MINUS>, <&kp LS(INT1)>;    // LS(INT1) -> JISで_
+          bindings = <&kp MINUS>, <&kp LS(0x87)>;    // LS(0x87) -> JIS _
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
       jp_semi: jp_semi {            // ;キー: 通常=; / Shift=:
@@ -101,7 +101,7 @@
           compatible = "zmk,behavior-mod-morph";
           label = "JP_BACKSLASH";
           #binding-cells = <0>;
-          bindings = <&kp INT3>, <&kp LS(INT3)>;     // INT3=¥キー -> \ / Shift -> |
+          bindings = <&kp 0x89>, <&kp LS(0x89)>;     // 0x89=¥キー -> \ / LS(0x89) -> |
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
       jp_grave: jp_grave {          // `キー: 通常=` / Shift=~
