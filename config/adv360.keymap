@@ -77,13 +77,13 @@
           bindings = <&kp UNDERSCORE>, <&kp COLON>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_minus: jp_minus {
-    compatible = "zmk,behavior-mod-morph";
-    label = "JP_MINUS";
-    #binding-cells = <0>;
-    bindings = <&kp MINUS>, <&kp LS(INT1)>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
+    jp_minus: jp_minus {
+        compatible = "zmk,behavior-mod-morph";
+        label = "JP_MINUS";
+        #binding-cells = <0>;
+        bindings = <&kp MINUS>, <&kp UNDERSCORE>;
+        mods = <(MOD_LSFT|MOD_RSFT)>;
+    };
       jp_semi: jp_semi {            // ;: 通常=; / Shift=:
           compatible = "zmk,behavior-mod-morph";
           label = "JP_SEMI";
@@ -98,13 +98,13 @@
           bindings = <&kp AMPERSAND>, <&kp AT>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_backslash: jp_backslash {  // \: 通常=\ / Shift=|
-          compatible = "zmk,behavior-mod-morph";
-          label = "JP_BACKSLASH";
-          #binding-cells = <0>;
-          bindings = <&kp JP_YEN>, <&kp JP_PIPE>;
-          mods = <(MOD_LSFT|MOD_RSFT)>;
-      };
+jp_backslash: jp_backslash {
+    compatible = "zmk,behavior-mod-morph";
+    label = "JP_BACKSLASH";
+    #binding-cells = <0>;
+    bindings = <&kp BACKSLASH>, <&kp PIPE>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
       jp_grave: jp_grave {          // `: 通常=` / Shift=~
           compatible = "zmk,behavior-mod-morph";
           label = "JP_GRAVE";
