@@ -6,11 +6,6 @@
 #include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/pointing.h>
 
-// JIS専用キー（US配列に対応するキーコードが存在しないため生コードで定義）
-#define JP_YEN   0x89     // ¥ / \ (バックスラッシュ)
-#define JP_PIPE  LS(0x89) // |
-#define JP_UNDER LS(0x87) // _
-
 / {
     behaviors {
       #include "macros.dtsi"
@@ -28,84 +23,84 @@
 
       // ===== JIS設定のWindows向け mod-morph 定義 =====
 
-      jp_at: jp_at {                // 2: 通常=2 / Shift=@
+      jp_at: jp_at {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_AT";
           #binding-cells = <0>;
           bindings = <&kp N2>, <&kp LEFT_BRACKET>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_caret: jp_caret {          // 6: 通常=6 / Shift=^
+      jp_caret: jp_caret {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_CARET";
           #binding-cells = <0>;
           bindings = <&kp N6>, <&kp EQUAL>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_amp: jp_amp {              // 7: 通常=7 / Shift=&
+      jp_amp: jp_amp {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_AMP";
           #binding-cells = <0>;
           bindings = <&kp N7>, <&kp CARET>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_asterisk: jp_asterisk {    // 8: 通常=8 / Shift=*
+      jp_asterisk: jp_asterisk {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_ASTERISK";
           #binding-cells = <0>;
           bindings = <&kp N8>, <&kp DOUBLE_QUOTES>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_lparen: jp_lparen {        // 9: 通常=9 / Shift=(
+      jp_lparen: jp_lparen {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_LPAREN";
           #binding-cells = <0>;
           bindings = <&kp N9>, <&kp ASTERISK>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_rparen: jp_rparen {        // 0: 通常=0 / Shift=)
+      jp_rparen: jp_rparen {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_RPAREN";
           #binding-cells = <0>;
           bindings = <&kp N0>, <&kp LEFT_PARENTHESIS>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_equal: jp_equal {          // =: 通常== / Shift=+
+      jp_equal: jp_equal {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_EQUAL";
           #binding-cells = <0>;
           bindings = <&kp UNDERSCORE>, <&kp COLON>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-    jp_minus: jp_minus {
-        compatible = "zmk,behavior-mod-morph";
-        label = "JP_MINUS";
-        #binding-cells = <0>;
-       bindings = <&kp MINUS>, <&kp LS(UNDERSCORE)>;
-        mods = <(MOD_LSFT|MOD_RSFT)>;
-    };
-      jp_semi: jp_semi {            // ;: 通常=; / Shift=:
+      jp_minus: jp_minus {
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_MINUS";
+          #binding-cells = <0>;
+          bindings = <&kp MINUS>, <&kp MINUS>;
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_semi: jp_semi {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_SEMI";
           #binding-cells = <0>;
           bindings = <&kp SEMICOLON>, <&kp SINGLE_QUOTE>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_quote: jp_quote {          // ': 通常=' / Shift="
+      jp_quote: jp_quote {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_QUOTE";
           #binding-cells = <0>;
           bindings = <&kp AMPERSAND>, <&kp AT>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-jp_backslash: jp_backslash {
-    compatible = "zmk,behavior-mod-morph";
-    label = "JP_BACKSLASH";
-    #binding-cells = <0>;
-    bindings = <&kp BACKSLASH>, <&kp PIPE>;
-    mods = <(MOD_LSFT|MOD_RSFT)>;
-};
-      jp_grave: jp_grave {          // `: 通常=` / Shift=~
+      jp_backslash: jp_backslash {
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_BACKSLASH";
+          #binding-cells = <0>;
+          bindings = <&kp BACKSLASH>, <&kp PIPE>;
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_grave: jp_grave {
           compatible = "zmk,behavior-mod-morph";
           label = "JP_GRAVE";
           #binding-cells = <0>;
@@ -117,16 +112,19 @@ jp_backslash: jp_backslash {
   keymap {
     compatible = "zmk,keymap";
 
+    // レイヤー0: 社用PC用（JIS補正あり）
     default_layer {
-      display-name = "Base";
+      display-name = "JIS";
       bindings = <
         &jp_equal &kp N1     &jp_at   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &jp_caret &jp_amp &jp_asterisk &jp_lparen &jp_rparen &jp_minus
         &kp TAB   &kp Q      &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y     &kp U   &kp I        &kp O      &kp P      &jp_backslash
         &kp ESC   &kp A      &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H     &kp J   &kp K        &kp L      &jp_semi   &jp_quote
         &kp LSHFT &kp Z      &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N     &kp M   &kp COMMA    &kp DOT    &kp FSLH   &kp RSHFT
-        &mo 2     &jp_grave  &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP    &kp DOWN &kp RBKT     &kp BSLH   &mo 2
+        &mo 2     &jp_grave  &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP    &kp DOWN      &kp RBKT   &kp BSLH   &mo 2
       >;
     };
+
+    // レイヤー1: キーパッド
     keypad {
       display-name = "Kp";
       bindings = <
@@ -134,19 +132,23 @@ jp_backslash: jp_backslash {
         &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
         &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
         &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp BSLH        &mo 2
+        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN      &kp KP_DOT    &kp BSLH        &mo 2
       >;
     };
+
+    // レイヤー2: Fn
     fn {
       display-name = "Fn";
       bindings = <
         &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 1                                           &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans &trans  &none                                            &none &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans         &none &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans &trans                      &trans &trans                      &trans &trans &trans &trans  &trans  &trans
+        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans               &trans &trans &trans  &trans  &trans
       >;
     };
+
+    // レイヤー3: Mod（BT切替・設定）
     mod {
       display-name = "Mod";
       bindings = <
@@ -154,23 +156,34 @@ jp_backslash: jp_backslash {
         &none &none        &none        &none        &none        &none        &bootloader                                                               &bootloader            &none        &none        &none        &none &none &none
         &studio_unlock &none        &none        &none        &none        &none        &none                   &none &none &bt BT_CLR &none                      &stp STP_BAT &none        &none        &none        &none &none &none
         &none &none        &none        &none        &macro_ver   &none                                      &none &none                                                        &none        &none        &none        &none &none &none
-        &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
+        &none &tog 4       &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
       >;
     };
-    extra1 { 
-      display-name = "Red";    
+
+    // レイヤー4: 個人PC用（US素通し・補正なし）
+    extra1 {
+      display-name = "US";
+      bindings = <
+        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
+        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
+      >;
+    };
+
+    extra2 {
+      display-name = "Purple";
       status = "reserved";
     };
-    extra2 { 
-      display-name = "Purple";    
+
+    extra3 {
+      display-name = "Cyan";
       status = "reserved";
     };
-    extra3 { 
-      display-name = "Cyan";    
-      status = "reserved";
-    };
-    extra4 { 
-      display-name = "Yellow";    
+
+    extra4 {
+      display-name = "Yellow";
       status = "reserved";
     };
   };
