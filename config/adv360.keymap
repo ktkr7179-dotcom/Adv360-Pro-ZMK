@@ -112,8 +112,9 @@
   keymap {
     compatible = "zmk,keymap";
 
+    // レイヤー0: 社用PC用（JIS補正あり）。kpキーでレイヤー1(US)へトグル
     default_layer {
-      display-name = "Base";
+      display-name = "JIS";
       bindings = <
         &jp_equal &kp N1     &jp_at   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &jp_caret &jp_amp &jp_asterisk &jp_lparen &jp_rparen &jp_minus
         &kp TAB   &kp Q      &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y     &kp U   &kp I        &kp O      &kp P      &jp_backslash
@@ -122,16 +123,20 @@
         &mo 2     &jp_grave  &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP    &kp DOWN      &kp RBKT   &kp BSLH   &mo 2
       >;
     };
+
+    // レイヤー1: 個人PC用（US配列・補正なし）。kpキーでレイヤー0(JIS)へ戻る
     keypad {
-      display-name = "Kp";
+      display-name = "US";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN      &kp KP_DOT    &kp BSLH        &mo 2
+        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
+        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
+        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
+        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
       >;
     };
+
+    // レイヤー2: Fn
     fn {
       display-name = "Fn";
       bindings = <
@@ -142,6 +147,8 @@
         &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans               &trans &trans &trans  &trans  &trans
       >;
     };
+
+    // レイヤー3: Mod（BT切替・設定）
     mod {
       display-name = "Mod";
       bindings = <
@@ -152,6 +159,7 @@
         &none &none        &none        &none        &none                                       &none &none &none &none      &bl BL_TOG &rgb_ug RGB_TOG                                     &bl BL_INC   &bl BL_DEC   &none &none &none
       >;
     };
+
     extra1 {
       display-name = "Red";
       status = "reserved";
