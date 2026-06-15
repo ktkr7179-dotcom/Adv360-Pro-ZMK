@@ -77,13 +77,13 @@
           bindings = <&kp UNDERSCORE>, <&kp COLON>;
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
-      jp_minus: jp_minus {          // -: 通常=- / Shift=_
-          compatible = "zmk,behavior-mod-morph";
-          label = "JP_MINUS";
-          #binding-cells = <0>;
-          bindings = <&kp MINUS>, <&kp JP_UNDER>;
-          mods = <(MOD_LSFT|MOD_RSFT)>;
-      };
+      jp_minus: jp_minus {
+    compatible = "zmk,behavior-mod-morph";
+    label = "JP_MINUS";
+    #binding-cells = <0>;
+    bindings = <&kp MINUS>, <&kp LS(INT1)>;
+    mods = <(MOD_LSFT|MOD_RSFT)>;
+};
       jp_semi: jp_semi {            // ;: 通常=; / Shift=:
           compatible = "zmk,behavior-mod-morph";
           label = "JP_SEMI";
