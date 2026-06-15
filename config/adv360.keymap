@@ -20,6 +20,97 @@
           flavor = "tap-preferred";
           bindings = <&kp>, <&kp>;
       };
+
+      // ===== JIS設定のWindows向け mod-morph 定義 =====
+      // 各キー: 通常時 / Shift時 でUS刻印どおりの文字を送る
+
+      // --- 数字段 ---
+      jp_at: jp_at {                // 2: 通常=2 / Shift=@
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_AT";
+          #binding-cells = <0>;
+          bindings = <&kp N2>, <&kp LEFT_BRACKET>;   // LBKT(無シフト) -> JISで@
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_caret: jp_caret {          // 6: 通常=6 / Shift=^
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_CARET";
+          #binding-cells = <0>;
+          bindings = <&kp N6>, <&kp EQUAL>;          // EQUAL(無シフト) -> JISで^
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_amp: jp_amp {              // 7: 通常=7 / Shift=&
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_AMP";
+          #binding-cells = <0>;
+          bindings = <&kp N7>, <&kp CARET>;          // CARET=Shift+6 -> JISで&
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_asterisk: jp_asterisk {    // 8: 通常=8 / Shift=*
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_ASTERISK";
+          #binding-cells = <0>;
+          bindings = <&kp N8>, <&kp DOUBLE_QUOTES>;  // DQT=Shift+' -> JISで*
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_lparen: jp_lparen {        // 9: 通常=9 / Shift=(
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_LPAREN";
+          #binding-cells = <0>;
+          bindings = <&kp N9>, <&kp ASTERISK>;       // ASTERISK=Shift+8 -> JISで(
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_rparen: jp_rparen {        // 0: 通常=0 / Shift=)
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_RPAREN";
+          #binding-cells = <0>;
+          bindings = <&kp N0>, <&kp LEFT_PARENTHESIS>; // LPAR=Shift+9 -> JISで)
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+
+      // --- その他の記号キー ---
+      jp_equal: jp_equal {          // =キー: 通常== / Shift=+
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_EQUAL";
+          #binding-cells = <0>;
+          bindings = <&kp UNDERSCORE>, <&kp COLON>;  // UND=Shift+- -> = / COLON=Shift+; -> +
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_minus: jp_minus {          // -キー: 通常=- / Shift=_
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_MINUS";
+          #binding-cells = <0>;
+          bindings = <&kp MINUS>, <&kp LS(INT1)>;    // LS(INT1) -> JISで_
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_semi: jp_semi {            // ;キー: 通常=; / Shift=:
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_SEMI";
+          #binding-cells = <0>;
+          bindings = <&kp SEMICOLON>, <&kp SINGLE_QUOTE>; // SQT(無シフト) -> JISで:
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_quote: jp_quote {          // 'キー: 通常=' / Shift="
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_QUOTE";
+          #binding-cells = <0>;
+          bindings = <&kp AMPERSAND>, <&kp AT>;      // AMP=Shift+7 -> ' / AT=Shift+2 -> "
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_backslash: jp_backslash {  // \キー: 通常=\ / Shift=|
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_BACKSLASH";
+          #binding-cells = <0>;
+          bindings = <&kp INT3>, <&kp LS(INT3)>;     // INT3=¥キー -> \ / Shift -> |
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
+      jp_grave: jp_grave {          // `キー: 通常=` / Shift=~
+          compatible = "zmk,behavior-mod-morph";
+          label = "JP_GRAVE";
+          #binding-cells = <0>;
+          bindings = <&kp LEFT_BRACE>, <&kp PLUS>;   // LBRC=Shift+[ -> ` / PLUS=Shift+= -> ~
+          mods = <(MOD_LSFT|MOD_RSFT)>;
+      };
     };
 
   keymap {
@@ -28,11 +119,11 @@
     default_layer {
       display-name = "Base";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp RBKT &kp BSLH &mo 2
+        &jp_equal &kp N1     &jp_at   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &jp_caret &jp_amp &jp_asterisk &jp_lparen &jp_rparen &jp_minus
+        &kp TAB   &kp Q      &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y     &kp U   &kp I        &kp O      &kp P      &jp_backslash
+        &kp ESC   &kp A      &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H     &kp J   &kp K        &kp L      &jp_semi   &jp_quote
+        &kp LSHFT &kp Z      &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N     &kp M   &kp COMMA    &kp DOT    &kp FSLH   &kp RSHFT
+        &mo 2     &jp_grave  &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP    &kp DOWN &kp RBKT     &kp BSLH   &mo 2
       >;
     };
     keypad {
