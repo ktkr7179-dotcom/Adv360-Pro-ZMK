@@ -76,7 +76,7 @@
           compatible = "zmk,behavior-mod-morph";
           label = "JP_MINUS";
           #binding-cells = <0>;
-          bindings = <&kp MINUS>, <&kp MINUS>;
+          bindings = <&kp MINUS>, <&kp LS(INT_RO)>;   // - / _
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
       jp_semi: jp_semi {
@@ -97,7 +97,7 @@
           compatible = "zmk,behavior-mod-morph";
           label = "JP_BACKSLASH";
           #binding-cells = <0>;
-          bindings = <&kp BACKSLASH>, <&kp PIPE>;
+          bindings = <&kp INT_YEN>, <&kp LS(INT_YEN)>;  // \ / |
           mods = <(MOD_LSFT|MOD_RSFT)>;
       };
       jp_grave: jp_grave {
